@@ -1,16 +1,24 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import QuestionCard from './QuestionCard'
 import loadRandomQuestion from '../lib/loadRandomQuestion'
 
 export default function Test () {
-  const [question, setQuestion] = useState()
+  const nextQuestionRef = useRef()
+  const [question, setQuestion] = useState(null)
 
   const loadNewQuestion = useCallback(() => {
-    loadRandomQuestion().then(setQuestion).catch(err => alert(err.message))
+    return loadRandomQuestion().then(question => {
+      setQuestion(nextQuestionRef.current)
+      nextQuestionRef.current = question
+
+      // Preload next image
+      var img = new Image()
+      img.src = question.image
+    })
   }, [])
 
   useEffect(() => {
-    loadNewQuestion()
+    loadNewQuestion().then(loadNewQuestion).catch(err => alert(err.message))
   }, [loadNewQuestion])
 
   return (
