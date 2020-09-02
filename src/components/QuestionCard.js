@@ -1,11 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styles from './QuestionCard.module.css'
 import TCButton from './UI/TCButton'
 import { CSSTransition } from 'react-transition-group'
-
-import audioFail from '../assets/audio/fail.mp3'
-import audioWin from '../assets/audio/win.mp3'
+import useAudioWinFail from '../lib/useAudioWinFail'
 
 QuestionCard.propTypes = {
   question: PropTypes.object,
@@ -20,10 +18,7 @@ export default function QuestionCard ({ question, onLoadNewQuestion }) {
   })
   const transitionNodeRef = useRef(null)
 
-  useEffect(() => {
-    if (!explanationData.isShown) return
-    new Audio(explanationData.isCorrect ? audioWin : audioFail).play()
-  }, [explanationData])
+  useAudioWinFail({ shouldPlay:explanationData.isShown, hasWon: explanationData.isCorrect })
 
   if (!question) return null
 
