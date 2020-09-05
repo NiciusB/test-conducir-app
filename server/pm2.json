@@ -3,11 +3,12 @@
         {
             "name": "test-conducir-app-server",
             "script": "src/index.ts",
+            "interpreter": "node_modules/.bin/ts-node",
             "watch": true,
             "instances": "2",
             "exec_mode": "cluster",
             "env": {
-                "production": true
+                "NODE_ENV": "prod"
             }
         }
     ]
