@@ -1,0 +1,38 @@
+.backgroundCover {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    animation: fadeBackgroundIn 0.5s forwards;
+}
+@keyframes fadeBackgroundIn {
+   0% { background: rgba(230, 230, 230, 0); }
+   100% { background: rgba(230, 230, 230, 0.4); }
+}
+
+.explanationRoot {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background: #f1f1f1;
+    box-shadow: 0 0 10px 0px rgba(0,0,0,0.2);
+    padding: 0 0.75em;
+}
+
+/* For CSSTransition */
+.enter {
+    transform: translateY(100%);
+}
+.enterActive {
+    transform: translateY(0%);
+    transition: transform 200ms ease;
+}
+.exit {
+    transform: translateY(0%);
+}
+.exitActive {
+    transform: translateY(100%);
+    transition: transform 200ms ease;
+}

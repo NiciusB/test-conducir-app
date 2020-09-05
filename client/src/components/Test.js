@@ -3,7 +3,7 @@ import QuestionCard from './QuestionCard'
 import loadRandomQuestion from '../lib/loadRandomQuestion'
 
 export default function Test () {
-  const nextQuestionRef = useRef()
+  const nextQuestionRef = useRef(null)
   const [question, setQuestion] = useState(null)
 
   const loadNewQuestion = useCallback(() => {
