@@ -4,10 +4,10 @@ import styles from './TCButton.module.css'
 
 TCButton.propTypes = {
   className: PropTypes.any,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 }
 
-export default function TCButton ({ className = '', title, ...props }) {
+export default function TCButton({ className = '', title, ...props }) {
   return (
     <button className={`${styles.button} ${className}`} {...props}>
       {title}

@@ -1,8 +1,17 @@
 import React from 'react'
-import Test from './components/Test'
+import { UserContextProvider, useUserState } from './lib/user-context.js'
+import Test from './pages/test/Test'
+import LoginPage from './pages/login/LoginPage'
 
-export default function App () {
+export default function App() {
   return (
-    <Test />
+    <UserContextProvider>
+      <Main />
+    </UserContextProvider>
   )
+}
+
+function Main() {
+  const user = useUserState()
+  return user ? <Test /> : <LoginPage />
 }

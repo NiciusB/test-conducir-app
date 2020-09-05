@@ -5,7 +5,8 @@ module.exports = {
   extends: [
     'plugin:react-hooks/recommended',
     'plugin:react/recommended',
-    'standard'
+    'standard',
+    'plugin:prettier/recommended'
   ],
   parserOptions: {
     ecmaFeatures: {

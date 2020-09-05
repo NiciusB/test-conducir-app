@@ -4,7 +4,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    animation: fadeBackgroundIn 0.5s forwards;
+    animation: fadeBackgroundIn 200ms forwards;
 }
 @keyframes fadeBackgroundIn {
    0% { background: rgba(230, 230, 230, 0); }
@@ -27,12 +27,12 @@
 }
 .enterActive {
     transform: translateY(0%);
-    transition: transform 200ms ease;
+    transition: transform 200ms;
 }
 .exit {
     transform: translateY(0%);
 }
 .exitActive {
     transform: translateY(100%);
-    transition: transform 200ms ease;
+    transition: transform 200ms;
 }

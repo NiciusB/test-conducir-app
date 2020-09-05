@@ -7,10 +7,10 @@ TCBottomSlide.propTypes = {
   children: PropTypes.any,
   isOpen: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func,
-  shouldCloseOnBackgroundClick: PropTypes.bool
+  shouldCloseOnBackgroundClick: PropTypes.bool,
 }
 
-export default function TCBottomSlide ({ children, isOpen, shouldCloseOnBackgroundClick = false, onRequestClose }) {
+export default function TCBottomSlide({ children, isOpen, shouldCloseOnBackgroundClick = false, onRequestClose }) {
   const transitionNodeRef = useRef(null)
   const lastOpenTimestampRef = useRef(null)
 
@@ -27,13 +27,7 @@ export default function TCBottomSlide ({ children, isOpen, shouldCloseOnBackgrou
   return (
     <>
       {isOpen && <div className={styles.backgroundCover} onClick={onBackgroundClick} />}
-      <CSSTransition
-        nodeRef={transitionNodeRef}
-        in={isOpen}
-        timeout={200}
-        unmountOnExit
-        classNames={{ ...styles }}
-      >
+      <CSSTransition nodeRef={transitionNodeRef} in={isOpen} timeout={200} unmountOnExit classNames={{ ...styles }}>
         <div className={styles.explanationRoot} ref={transitionNodeRef}>
           {children}
         </div>

@@ -4,10 +4,10 @@ import { useEffect } from 'react'
 
 const audios = {
   win: new Audio(audioWin),
-  fail: new Audio(audioFail)
+  fail: new Audio(audioFail),
 }
 
-export default function useAudioWinFail ({ shouldPlay, hasWon }) {
+export default function useAudioWinFail({ shouldPlay, hasWon }) {
   useEffect(() => {
     if (!shouldPlay) return
     const audio = audios[hasWon ? 'win' : 'fail']

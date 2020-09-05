@@ -1,0 +1,12 @@
+{
+  "eslint.workingDirectories": [
+    "./client", "./server"
+  ],
+  "files.watcherExclude": {
+      "**/node_modules/*/**": true
+  },
+  "editor.tabSize": 2,
+  "eslint.options": {
+    "configFile": ""
+  }
+}
