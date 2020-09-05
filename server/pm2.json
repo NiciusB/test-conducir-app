@@ -1,0 +1,14 @@
+{
+    "apps": [
+        {
+            "name": "test-conducir-app-server",
+            "script": "src/index.ts",
+            "watch": true,
+            "instances": "2",
+            "exec_mode": "cluster",
+            "env": {
+                "production": true
+            }
+        }
+    ]
+}
