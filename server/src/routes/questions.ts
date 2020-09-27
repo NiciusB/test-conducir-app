@@ -17,7 +17,7 @@ router.get(
       return
     }
 
-    const questionAnswersSubquery = await db
+    const questionAnswersSubquery = db
       .createQueryBuilder(QuestionAnswer, 'question_answer')
       .select('COUNT(question_answer.id)')
       .where('didGuessCorrectly=1')
@@ -35,6 +35,41 @@ router.get(
       ...question,
       answers: shuffleArray(question.answers),
       image: `${process.env.API_URL}/image/${question.id}.jpg`,
+    })
+  })
+)
+
+// GET /stats
+router.get(
+  '/stats',
+  asyncHandler(async (req, res) => {
+    if (!req.user) {
+      res.status(401).send({ error: 'Unauthenticated' })
+      return
+    }
+
+    const statsQuery = db
+      .createQueryBuilder()
+      .select('total.*, today.*')
+      .addFrom((sq) => {
+        return sq
+          .from(QuestionAnswer, 'sq1')
+          .addSelect('COUNT(*) as total')
+          .where('username=:username', { username: req.user.username })
+      }, 'total')
+      .addFrom((sq) => {
+        return sq
+          .from(QuestionAnswer, 'sq2')
+          .addSelect('COUNT(*) as today')
+          .where('username=:username', { username: req.user.username })
+          .andWhere("date(created) = date('now')")
+      }, 'today')
+
+    const stats = (await statsQuery.getRawOne()) as any
+
+    res.send({
+      today: stats.today ?? 0,
+      total: stats.total ?? 0,
     })
   })
 )
