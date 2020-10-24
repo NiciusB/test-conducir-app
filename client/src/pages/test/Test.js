@@ -19,7 +19,7 @@ export default function Test() {
   const [currentTest, setCurrentTest] = useState({ correct: 0, failed: 0 })
   useEffect(() => {
     if (currentTest.correct + currentTest.failed >= 30) {
-      window.alert(currentTest.failed > 3 ? 'Suspenso!' : 'Aprobado!')
+      setTimeout(window.alert, 700, currentTest.failed > 3 ? 'Suspenso!' : 'Aprobado!')
       setCurrentTest({ correct: 0, failed: 0 })
     }
   }, [currentTest])
