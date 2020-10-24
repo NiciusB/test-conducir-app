@@ -21,7 +21,7 @@ export default function TCBottomSlide({ children, isOpen, shouldCloseOnBackgroun
   const onBackgroundClick = () => {
     if (!shouldCloseOnBackgroundClick) return
     const tsDiff = Date.now() - lastOpenTimestampRef.current
-    if (tsDiff > 500) onRequestClose()
+    if (tsDiff > 250) onRequestClose()
   }
 
   return (
